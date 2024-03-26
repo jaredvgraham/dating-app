@@ -1,0 +1,19 @@
+.logo-container {
+  position: fixed;
+  top: 0;
+  left: 50%; /* Position the left edge of the logo container at the center of the screen */
+  transform: translateX(
+    -50%
+  ); /* Shift the logo container back to the left by half its width */
+  z-index: 1000; /* Ensure the logo stays on top of other content */
+  display: flex;
+  justify-content: center; /* Center logo horizontally within the container */
+  align-items: center; /* This is not necessary for fixed position but included for consistency */
+  padding: 10px 0; /* Optional: Add some padding around the logo */
+  background-color: transparent; /* or any color that fits your design */
+  margin-bottom: 20px;
+}
+
+.logo-container img {
+  width: 50px;
+}

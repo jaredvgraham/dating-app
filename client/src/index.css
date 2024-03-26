@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arial", sans-serif;
+}
+/* Base styles for the largest screens, where all components are displayed */
+#root {
+  display: flex;
+  /* other properties as per your current design, such as:
+     align-items, justify-content (if not space-between), etc. */
+}
+
+@media (min-width: 1300px) and (max-width: 1500px) {
+  .main-ctn {
+    max-width: 30vw;
+  }
+  .m-right-bar {
+    max-width: 30vw;
+  }
+  .card {
+    max-width: 30vw;
+  }
+}
+
+@media (max-width: 1300px) {
+  .main-ctn {
+    display: none;
+  }
+
+  .m-right-bar,
+  .card {
+    min-width: 48%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .m-right-bar {
+    display: none;
+  }
+
+  .card {
+    width: 100%;
+    height: 80vh;
+  }
+
+  .navbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 10;
+  }
+}
+@media (max-width: 444px) {
+  .scale button {
+    padding: 10px;
+
+    margin: 3px;
+  }
+}

@@ -1,0 +1,158 @@
+.m-right-bar {
+  display: flex;
+  flex-direction: column;
+  max-width: 33vw;
+  background-color: rgb(245, 243, 239);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2),
+    /* Lower larger shadow */ 0 6px 20px rgba(0, 0, 0, 0.19); /* Soft outer glow */
+  background: linear-gradient(
+    rgb(226, 225, 225),
+    #9c9c9c,
+    rgb(234, 234, 234),
+    #f1efef,
+    rgb(202, 202, 202)
+  );
+  max-height: 95vh;
+}
+/* RightBar.css */
+.m-right-bar-non-dashboard {
+  width: 70vw;
+  height: 100vh;
+  margin: auto;
+  background-color: rgb(245, 243, 239);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2),
+    /* Lower larger shadow */ 0 6px 20px rgba(0, 0, 0, 0.19); /* Soft outer glow */
+  background: linear-gradient(
+    rgb(226, 225, 225),
+    #9c9c9c,
+    rgb(234, 234, 234),
+    #f1efef,
+    rgb(202, 202, 202)
+  );
+  /* Add any other properties you need to override */
+}
+.non-dash-my-logo-ctn {
+  position: fixed; /* Fixed position relative to the viewport */
+  top: 50%; /* Center vertically */
+  left: 7%; /* Center horizontally */
+  width: 100px;
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Offset the element by half its width and height */
+  z-index: 100;
+}
+.my-logo-non-dash {
+  display: block; /* To remove any default inline spacing */
+  max-width: 100%; /* Ensures the image is responsive and fits its container */
+  height: auto; /* Maintains the aspect ratio */
+}
+@media screen and (max-width: 1200px) {
+  .m-right-bar-non-dashboard {
+    width: 100vw;
+  }
+}
+
+@media screen and (min-width: 720px) {
+  .m-right-bar-non-dashboard .matches-grid {
+    justify-content: center;
+  }
+}
+
+.user-pro-pic {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+}
+
+.profile-top {
+  border-bottom: 1px solid rgb(187, 183, 183);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  font-weight: 300;
+  padding: 10px;
+  height: 70px;
+}
+.profile-top h2 {
+  font-weight: 200;
+}
+.matches {
+  border-bottom: 1px solid rgb(187, 183, 183);
+  padding: 10px;
+}
+.msgs {
+  padding: 10px;
+  margin-top: 5px;
+  flex-grow: 1;
+  overflow-y: auto;
+
+  max-height: 71vh;
+}
+.match-pro-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  object-fit: cover;
+  object-position: center top;
+}
+.match-pro-pic:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.786); /* Example shadow */
+}
+.msg-pro-pic {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+}
+.matches-grid {
+  display: flex;
+  overflow-x: auto;
+  max-width: 100%;
+}
+.matches-box {
+  padding: 10px;
+}
+.message-box {
+  border-bottom: 1px solid rgb(131, 131, 131);
+  padding: 10px;
+  margin-bottom: 5px;
+
+  display: flex;
+  transition: background-color 0.3s ease;
+}
+.message-box:hover {
+  background-color: aliceblue;
+  border: none;
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.786);
+}
+.message-box p {
+  font-size: 1.1rem;
+}
+.message-box h4 {
+  font-size: 1.5rem;
+}
+.msg-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 8px;
+}
+.msgs h2 {
+  text-align: center;
+  font-weight: 200;
+  text-decoration: underline;
+  font-style: italic;
+}
+.matches h2 {
+  text-align: center;
+  font-weight: 200;
+
+  text-decoration: underline;
+  font-style: italic;
+}
