@@ -16,8 +16,10 @@ nav ul {
   justify-content: space-around; /* This will evenly space your nav items */
   align-items: center;
   height: 50px;
+  color: black;
 }
 
 nav ul li {
   padding: 10px 20px; /* Adjust padding as needed */
+  color: black;
 }

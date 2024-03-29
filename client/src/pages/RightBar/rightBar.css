@@ -1,12 +1,12 @@
 .m-right-bar {
   display: flex;
   flex-direction: column;
-  max-width: 33vw;
+  max-width: 33.33vw;
   background-color: rgb(245, 243, 239);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2),
     /* Lower larger shadow */ 0 6px 20px rgba(0, 0, 0, 0.19); /* Soft outer glow */
   background: linear-gradient(
-    rgb(226, 225, 225),
+    rgb(168, 167, 167),
     #9c9c9c,
     rgb(234, 234, 234),
     #f1efef,
@@ -23,8 +23,8 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2),
     /* Lower larger shadow */ 0 6px 20px rgba(0, 0, 0, 0.19); /* Soft outer glow */
   background: linear-gradient(
-    rgb(226, 225, 225),
-    #9c9c9c,
+    rgb(174, 174, 174),
+    #aaaaaa,
     rgb(234, 234, 234),
     #f1efef,
     rgb(202, 202, 202)
@@ -65,20 +65,6 @@
   border-radius: 50%;
 }
 
-.profile-top {
-  border-bottom: 1px solid rgb(187, 183, 183);
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-  font-weight: 300;
-  padding: 10px;
-  height: 70px;
-}
-.profile-top h2 {
-  font-weight: 200;
-}
 .matches {
   border-bottom: 1px solid rgb(187, 183, 183);
   padding: 10px;
@@ -89,6 +75,9 @@
   flex-grow: 1;
   overflow-y: auto;
 
+  max-height: 80vh;
+}
+.msgs-grid {
   max-height: 71vh;
 }
 .match-pro-pic {

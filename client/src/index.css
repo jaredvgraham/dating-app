@@ -25,7 +25,7 @@
 
 @media (max-width: 1300px) {
   .main-ctn {
-    display: none;
+    display: none !important;
   }
 
   .m-right-bar,
@@ -36,7 +36,7 @@
 
 @media (max-width: 1000px) {
   .m-right-bar {
-    display: none;
+    display: none !important;
   }
 
   .card {

@@ -1,8 +1,9 @@
 import React from "react";
 import "./rightBar.css";
-import assets from "../assets/assets.js";
+
 import { useLocation, useNavigate } from "react-router-dom";
-import { matchWithessages } from "../matchWithessages/matchWithessages";
+import assets from "../../assets/assets";
+import { matchWithessages } from "../../matchWithessages/matchWithessages";
 
 export const RightBar = ({ onSelectMessage }) => {
   const navigate = useNavigate();

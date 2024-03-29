@@ -1,0 +1,18 @@
+.logo-container {
+  position: fixed;
+  top: 0; /* Keep it at the top */
+  left: 50%; /* Start the left edge of the container at the center */
+  transform: translateX(
+    -50%
+  ); /* Move it back to the left by half its own width to center it */
+  z-index: 1000; /* Ensure it's above other content */
+  display: flex;
+  justify-content: center; /* Center content inside the container horizontally */
+  /* Add padding around the content inside the container */
+  background-color: transparent; /* Set a background color or keep it transparent */
+  /* Ensure the width is only as wide as its content */
+}
+
+.logo-container img {
+  width: 50px; /* Set the logo size */
+}

@@ -1,30 +1,36 @@
-import { Dashboard } from "./Dashboard/Dashboard";
-import { Discover } from "./Discover/Discover";
-import { Head } from "./Head/Head";
-import { LeftBar } from "./LeftBar/LeftBar";
-import { Navbar } from "./Navbar/Navbar";
-import { RightBar } from "./RightBar/RightBar";
-import { Register } from "./Register/Register";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Layout from "./Layout";
+import RequireAuth from "./components/RequireAuth";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import { LeftBar } from "./pages/LeftBar/LeftBar";
+
+import { RightBar } from "./pages/RightBar/RightBar";
+import { Register } from "./pages/Register/Register";
+import { Login } from "./pages/login/Login";
+import { Discover } from "./pages/Discover/Discover";
 import "./index.css";
 
 function App() {
   return (
-    <>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/messaging" element={<LeftBar />} />
-          <Route path="/discover" element={<Discover />} />
-          <Route path="/messages" element={<RightBar />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
-      </Router>
-
-      {/*  <Dashboard />
-      <Navbar /> */}
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          {" "}
+          {/* Layout as the parent route */}
+          <Route element={<RequireAuth />}>
+            {" "}
+            {/* RequireAuth wraps around protected routes */}
+            <Route index element={<Dashboard />} />{" "}
+            {/* Use index for the default child route */}
+            <Route path="messaging" element={<LeftBar />} />
+            <Route path="discover" element={<Discover />} />
+            <Route path="messages" element={<RightBar />} />
+          </Route>
+        </Route>
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </Router>
   );
 }
 

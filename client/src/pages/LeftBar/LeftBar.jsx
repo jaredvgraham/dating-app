@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import assets from "../assets/assets.js";
+
 import "./LeftBar.css";
-import { matchWithessages } from "../matchWithessages/matchWithessages";
+import assets from "../../assets/assets";
+import { matchWithessages } from "../../matchWithessages/matchWithessages";
 
 export const LeftBar = ({ selectedMessage }) => {
   const location = useLocation();

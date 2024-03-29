@@ -1,5 +1,5 @@
 import React from "react";
-import assets from "../assets/assets.js";
+import assets from "../../assets/assets.js";
 import "./Head.css";
 export const Head = () => {
   return (

@@ -1,10 +1,10 @@
 .card {
   position: relative;
   width: 100%;
-  max-width: 500px;
-  height: calc(100vh - 160px);
+  max-width: 450px;
+  height: calc(100vh - 180px);
   margin: 60px auto 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.542);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 20px;
   overflow: hidden;
   background: #fff;
@@ -63,7 +63,7 @@
   left: 0;
   width: 100%;
   padding: 20px;
-  background: rgba(0, 0, 0, 0.252); /* Semi-transparent overlay */
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
   color: #fff;
   text-align: center;
   border-radius: 0 0 20px 20px;
@@ -77,33 +77,27 @@
 
 .scale {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  margin-top: 10px;
+}
 
-  /* Center scale buttons */
+.scale {
+  display: flex;
+  justify-content: center; /* Center scale buttons */
   margin: 10px 0; /* Add top and bottom margin as needed */
   padding: 0 10px; /* Padding inside the scale, adjust as needed */
   box-sizing: border-box; /* Include padding in the width calculation */
-  max-width: 100%;
-  overflow: hidden;
 }
 
 .scale button {
   background-color: #ddd; /* Neutral color for the buttons */
   color: #333;
-
   border: none;
   margin: 0 3px; /* Reduce space between buttons */
   padding: 10px 12px; /* Adjust padding to reduce button width */
   border-radius: 5px; /* Rounded corners for buttons */
   cursor: pointer;
-  /* Don't grow or shrink */
-  flex: 1 1 auto; /* Change here */
-  min-width: 0; /* Ensures the button text can shrink */
-  white-space: nowrap; /* Prevents text from wrapping */
-}
-
-.scale button:hover {
-  background-color: aquamarine;
+  flex: 0 0 auto; /* Don't grow or shrink */
 }
 
 .like-notLike {
@@ -118,7 +112,7 @@
 }
 
 .like-notLike img {
-  width: 44px;
+  width: 34px;
   background-color: rgba(255, 255, 255, 0.7);
   padding: 5px;
   border-radius: 50%;

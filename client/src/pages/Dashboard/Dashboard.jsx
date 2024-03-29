@@ -3,10 +3,15 @@ import React from "react";
 import { Discover } from "../Discover/Discover";
 import { LeftBar } from "../LeftBar/LeftBar";
 import { RightBar } from "../RightBar/RightBar";
-import { matchWithessages } from "../matchWithessages/matchWithessages";
+import "../RightBar/rightBar.css";
+import "../LeftBar/LeftBar.css";
+import "../../index.css";
+
+import { matchWithessages } from "../../matchWithessages/matchWithessages";
 import { useState } from "react";
 
-export const Dashboard = () => {
+const Dashboard = () => {
+  console.log("Dashboard rendering");
   const [selectedMessage, setSelectedMessage] = useState(
     matchWithessages[matchWithessages.length - 1] // The initial selected message
   );
@@ -25,3 +30,4 @@ export const Dashboard = () => {
     </>
   );
 };
+export default Dashboard;

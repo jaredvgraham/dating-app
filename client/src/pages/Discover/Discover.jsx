@@ -1,8 +1,9 @@
 import React from "react";
-import assets from "../assets/assets.js";
+import assets from "../../assets/assets";
+
 import "./Discover.css";
 import { useState } from "react";
-import { Head } from "../Head/Head.jsx";
+import { Head } from "../../components/Head/Head.jsx";
 
 export const Discover = () => {
   // Placeholder functions for your onClick events
@@ -28,9 +29,8 @@ export const Discover = () => {
 
   return (
     <>
-      <Head />
-
       <div className="card">
+        <Head />
         <div className="img-slider">
           <span className="prev" onClick={() => moveSlide(-1)}>
             &#10094;
