@@ -9,6 +9,8 @@ import { Register } from "./pages/Register/Register";
 import { Login } from "./pages/login/Login";
 import { Discover } from "./pages/Discover/Discover";
 import "./index.css";
+import CreateAccount from "./pages/CreateAccount";
+import { ProfileCreation } from "./pages/ProfileCreation";
 
 function App() {
   return (
@@ -25,10 +27,13 @@ function App() {
             <Route path="messaging" element={<LeftBar />} />
             <Route path="discover" element={<Discover />} />
             <Route path="messages" element={<RightBar />} />
+            <Route path="/create-account" element={<CreateAccount />} />
           </Route>
         </Route>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+
+        <Route path="/profile-creation" element={<ProfileCreation />} />
       </Routes>
     </Router>
   );

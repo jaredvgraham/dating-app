@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import "./Register.css"; // Updated CSS file with unique class names
 import axios from "../../api/axios";
+import { useNavigate } from "react-router-dom";
 
 import {
   faCheck,
@@ -12,9 +13,11 @@ import { Link } from "react-router-dom";
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_.]{3,23}$/;
 const PWD_REGEX = /^(?=.*[0-9]).{8,24}$/;
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const REGISTER_URL = "/register";
 
 export const Register = () => {
+  const navigate = useNavigate();
   const userRef = useRef();
   const errRef = useRef();
 
@@ -29,6 +32,10 @@ export const Register = () => {
   const [matchPwd, setMatchPwd] = useState("");
   const [validMatch, setValidMatch] = useState(false);
   const [matchFocus, setMatchFocus] = useState(false);
+
+  const [email, setEmail] = useState("");
+  const [validEmail, setValidEmail] = useState(false);
+  const [emailFocus, setEmailFocus] = useState(false);
 
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
@@ -47,31 +54,37 @@ export const Register = () => {
   }, [pwd, matchPwd]);
 
   useEffect(() => {
+    setValidEmail(EMAIL_REGEX.test(email));
+  }, [email]);
+
+  useEffect(() => {
     setErrMsg("");
-  }, [username, pwd, matchPwd]);
+  }, [username, pwd, matchPwd, email]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const v1 = USER_REGEX.test(username);
     const v2 = PWD_REGEX.test(pwd);
-    if (!v1 || !v2) {
+    const v3 = EMAIL_REGEX.test(email);
+    if (!v1 || !v2 || !v3) {
       setErrMsg("Invalid Entry");
       return;
     }
     try {
       const response = await axios.post(
         REGISTER_URL,
-        JSON.stringify({ username, pwd }),
+        JSON.stringify({ username, password: pwd, email }),
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
         }
       );
+
       console.log(response.data);
-      console.log(response.accsessToken);
-      console.log(JSON.stringify(response));
       setSuccess(true);
+      navigate(`/login`);
     } catch (err) {
+      console.error("Registration error:", err);
       if (!err?.response) {
         setErrMsg("No server Response");
       } else if (err.response?.status === 409) {
@@ -79,7 +92,7 @@ export const Register = () => {
       } else {
         setErrMsg("Registration Failed");
       }
-      errRef.current.focus();
+      errRef.current?.focus();
     }
   };
 
@@ -90,8 +103,8 @@ export const Register = () => {
           <section className="reg-section">
             <h1>Success!</h1>
             <p>
-              <Link className="signIn-link" to="/login">
-                Sign In
+              <Link className="signIn-link" to="/createacount">
+                Create Acount
               </Link>
             </p>
           </section>
@@ -108,6 +121,39 @@ export const Register = () => {
             </p>
             <h1 className="reg-title">Register</h1>
             <form onSubmit={handleSubmit} className="reg-form">
+              <label htmlFor="email" className="reg-label">
+                Email:
+                <span className={validEmail ? "reg-valid" : "reg-hide"}>
+                  <FontAwesomeIcon icon={faCheck} />
+                </span>
+                <span
+                  className={validEmail || !email ? "reg-hide" : "reg-invalid"}
+                >
+                  <FontAwesomeIcon icon={faTimes} />
+                </span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                autoComplete="off"
+                className="reg-input"
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                aria-invalid={validEmail ? "false" : "true"}
+                aria-describedby="emailnote"
+                onFocus={() => setEmailFocus(true)}
+                onBlur={() => setEmailFocus(false)}
+              />
+              <p
+                id="emailnote"
+                className={`reg-instructions ${
+                  emailFocus && !validEmail ? "" : "reg-offscreen"
+                }`}
+              >
+                <FontAwesomeIcon icon={faInfoCircle} />
+                Please enter a valid email address.
+              </p>
+
               {/* Username Input */}
               <label htmlFor="username" className="reg-label">
                 Username:

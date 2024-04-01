@@ -23,6 +23,7 @@ const Dashboard = () => {
 
   return (
     <>
+    
       <LeftBar selectedMessage={selectedMessage} />
       <Discover />
       <RightBar onSelectMessage={handleSelectMessage} />{" "}

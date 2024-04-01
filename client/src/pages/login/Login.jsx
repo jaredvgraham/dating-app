@@ -5,7 +5,7 @@ import ".././Register/Register.css"; // Reuse the Register component's styles
 import axios from "../../api/axios";
 
 // Placeholder URL for the login endpoint
-const LOGIN_URL = "/auth";
+const LOGIN_URL = "/login";
 
 export const Login = () => {
   const { setAuth } = useAuth();
@@ -33,22 +33,25 @@ export const Login = () => {
     try {
       const response = await axios.post(
         LOGIN_URL,
-        JSON.stringify({ username, pwd }),
+        JSON.stringify({ username, password: pwd }),
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
         }
       );
       console.log(JSON.stringify(response?.data));
-      const accsessToken = response?.data?.accsessToken;
+      const accessToken = response?.data?.accessToken;
+      const refresh = response?.data?.token;
+      console.log(refresh);
+      console.log(accessToken);
       /* const roles = response?.data?.roles */ //this might be a thing or not <========
-      setAuth({ username, pwd, accsessToken });
+      setAuth({ username, pwd, accessToken });
       setUsername("");
       setPwd("");
 
       // Example: console.log(response);
       // Save the token, navigate to the dashboard or do something after successful login
-      navigate(from, { replace: true }); // Adjust the navigation URL as needed
+      navigate(`/create-account`); // Adjust the navigation URL as needed
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");

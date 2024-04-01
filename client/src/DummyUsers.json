@@ -1,0 +1,69 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Alex",
+      "age": 29,
+      "gender": "Male",
+      "bio": "Love hiking and outdoor adventures. Coffee enthusiast.",
+      "distance": "5 miles away",
+      "photoUrl": "https://example.com/photos/alex.jpg",
+      "matches": ["m1"]
+    },
+    {
+      "id": "2",
+      "name": "Jordan",
+      "age": 24,
+      "gender": "Non-binary",
+      "bio": "Digital artist and gamer. Let's share playlists.",
+      "distance": "2 miles away",
+      "photoUrl": "https://example.com/photos/jordan.jpg",
+      "matches": ["m1", "m2"]
+    },
+    {
+      "id": "3",
+      "name": "Sam",
+      "age": 31,
+      "gender": "Female",
+      "bio": "Bookworm and writer. Exploring the city one book café at a time.",
+      "distance": "8 miles away",
+      "photoUrl": "https://example.com/photos/sam.jpg",
+      "matches": ["m2"]
+    }
+  ],
+  "matches": [
+    {
+      "id": "m1",
+      "userIds": ["1", "2"],
+      "messages": ["msg1", "msg2"]
+    },
+    {
+      "id": "m2",
+      "userIds": ["2", "3"],
+      "messages": ["msg3"]
+    }
+  ],
+  "messages": [
+    {
+      "id": "msg1",
+      "senderId": "1",
+      "receiverId": "2",
+      "text": "Hey, how are you?",
+      "timestamp": "2024-03-30T12:00:00Z"
+    },
+    {
+      "id": "msg2",
+      "senderId": "2",
+      "receiverId": "1",
+      "text": "I'm good, thanks! And you?",
+      "timestamp": "2024-03-30T12:05:00Z"
+    },
+    {
+      "id": "msg3",
+      "senderId": "3",
+      "receiverId": "2",
+      "text": "Loved your art profile! Want to chat?",
+      "timestamp": "2024-03-31T15:00:00Z"
+    }
+  ]
+}
