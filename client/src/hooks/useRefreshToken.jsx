@@ -36,7 +36,6 @@ export const useRefreshToken = () => {
   };
 
   // Automatically refresh token every time refresh function is called
-  refresh();
 
   return refresh;
 };

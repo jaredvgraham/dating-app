@@ -9,15 +9,15 @@ import { Register } from "./pages/Register/Register";
 import { Login } from "./pages/login/Login";
 import { Discover } from "./pages/Discover/Discover";
 import "./index.css";
-import CreateAccount from "./pages/CreateAccount";
-import { ProfileCreation } from "./pages/ProfileCreation";
+import CreateAccount from "./pages/CreateAccount/CreateAccount";
+import { ProfileCreation } from "./pages/ProfileCreation/ProfileCreation";
+import { IsUser } from "./pages/IsUser";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Layout />}>
-          {" "}
           {/* Layout as the parent route */}
           <Route element={<RequireAuth />}>
             {" "}
@@ -27,13 +27,13 @@ function App() {
             <Route path="messaging" element={<LeftBar />} />
             <Route path="discover" element={<Discover />} />
             <Route path="messages" element={<RightBar />} />
+            <Route path="isUser" element={<IsUser />} />
             <Route path="/create-account" element={<CreateAccount />} />
+            <Route path="/profile-creation" element={<ProfileCreation />} />
           </Route>
         </Route>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-
-        <Route path="/profile-creation" element={<ProfileCreation />} />
       </Routes>
     </Router>
   );

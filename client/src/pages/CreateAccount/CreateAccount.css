@@ -1,0 +1,177 @@
+.a-create-ctn {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: linear-gradient(
+    to right,
+    black,
+    rgb(76, 74, 74),
+    rgb(30, 30, 30)
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.a-hold {
+  /*  background-color: rgb(196, 208, 218); */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin: 10px;
+  min-height: 60vh;
+  width: 60vw;
+  font-size: 1.5rem;
+  padding: 20px;
+  border: 1px solid gray;
+  border-radius: 40px;
+}
+.a-hold label {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.a-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex-grow: 1;
+  padding-bottom: 1rem;
+  color: #ffffff;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.a-form input {
+  border: 2px solid rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255, 0.1);
+  color: white;
+}
+.a-form > * {
+  margin: 10px; /* Adjust the value as needed */
+}
+.names-ctn {
+  display: flex;
+  width: 100%;
+}
+.names-ctn input {
+  height: 50px;
+  font-size: 1.5rem;
+  padding: 5px;
+  border-radius: 20px;
+}
+.names-stack {
+  display: flex;
+  flex-direction: column;
+  width: 49%;
+  margin: auto;
+}
+.dob-in {
+  width: 50%;
+  height: 45px;
+  padding: 5px;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  margin: auto;
+}
+.dob-ctn {
+  display: flex;
+  flex-direction: column;
+}
+.gender-ctn {
+  display: flex;
+  flex-direction: column;
+}
+.gen-btns {
+  display: flex;
+  width: 100%;
+}
+.wom-btn {
+  width: 45%;
+  height: 65px;
+  border: none;
+  margin: auto;
+  font-size: 1.5rem;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background-color: rgb(202, 202, 202);
+  border-radius: 20px;
+  color: rgb(244, 177, 188);
+  border: 1px solid pink;
+  letter-spacing: 2px;
+  /* Adjust the font size as needed */
+  font-weight: bold; /* Bold text makes the outline more visible */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000; /* Outline effect */
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2),
+    /* Primary shadow */ 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.wom-btn:hover {
+  background-color: rgb(252, 193, 242);
+}
+.male-btn {
+  width: 45%;
+  height: 65px;
+  border: none;
+  margin: auto;
+  font-size: 1.5rem;
+  background-color: rgb(202, 202, 202);
+  border-radius: 20px;
+  color: rgb(54, 195, 230);
+  border: 1px solid rgb(54, 195, 230);
+  letter-spacing: 2px;
+  /* Adjust the font size as needed */
+  font-weight: bold; /* Bold text makes the outline more visible */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000; /* Outline effect */
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2),
+    /* Primary shadow */ 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.male-btn:hover {
+  background-color: rgb(107, 191, 255);
+}
+.sO-ctn {
+  display: flex;
+  flex-direction: column;
+}
+.sO-in {
+  width: 50%;
+  height: 45px;
+  padding: 5px;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  margin: auto;
+}
+.submit-btn {
+  width: 100%;
+  margin: auto;
+  height: 55px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid white;
+  background-color: hsla(187, 85%, 79%, 0.139);
+  color: #9becf7;
+}
+.submit-btn:hover {
+  background-color: hsla(187, 85%, 79%, 0.211);
+  color: white;
+}
+
+@media (max-width: 800px) {
+  .a-hold {
+    width: 95vw;
+    height: 95vh;
+  }
+}
+@media (max-width: 500px) {
+  .a-hold {
+    width: 99vw;
+    height: 99vh;
+  }
+}

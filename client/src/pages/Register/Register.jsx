@@ -122,7 +122,6 @@ export const Register = () => {
             <h1 className="reg-title">Register</h1>
             <form onSubmit={handleSubmit} className="reg-form">
               <label htmlFor="email" className="reg-label">
-                Email:
                 <span className={validEmail ? "reg-valid" : "reg-hide"}>
                   <FontAwesomeIcon icon={faCheck} />
                 </span>
@@ -134,6 +133,7 @@ export const Register = () => {
               </label>
               <input
                 type="email"
+                placeholder="Email"
                 id="email"
                 autoComplete="off"
                 className="reg-input"
@@ -156,7 +156,6 @@ export const Register = () => {
 
               {/* Username Input */}
               <label htmlFor="username" className="reg-label">
-                Username:
                 <span className={validUsername ? "reg-valid" : "reg-hide"}>
                   <FontAwesomeIcon icon={faCheck} />
                 </span>
@@ -171,6 +170,7 @@ export const Register = () => {
               <input
                 type="text"
                 id="username"
+                placeholder="Username"
                 ref={userRef}
                 autoComplete="off"
                 className="reg-input"
@@ -196,7 +196,6 @@ export const Register = () => {
 
               {/* Password Input */}
               <label htmlFor="password" className="reg-label">
-                Password:
                 <span className={validPwd ? "reg-valid" : "reg-hide"}>
                   <FontAwesomeIcon icon={faCheck} />
                 </span>
@@ -206,6 +205,7 @@ export const Register = () => {
               </label>
               <input
                 type="password"
+                placeholder="Password"
                 id="password"
                 className="reg-input"
                 onChange={(e) => setPwd(e.target.value)}
@@ -228,7 +228,6 @@ export const Register = () => {
 
               {/* Confirm Password Input */}
               <label htmlFor="confirm_pwd" className="reg-label">
-                Confirm Password:
                 <span
                   className={validMatch && matchPwd ? "reg-valid" : "reg-hide"}
                 >
@@ -245,6 +244,7 @@ export const Register = () => {
               <input
                 type="password"
                 id="confirm_pwd"
+                placeholder="Confirm Password"
                 className="reg-input"
                 onChange={(e) => setMatchPwd(e.target.value)}
                 required
@@ -271,7 +271,7 @@ export const Register = () => {
                 Sign Up
               </button>
             </form>
-            <p>
+            <p className="already-reg">
               Already registerd?
               <br />
               <span className="line">
