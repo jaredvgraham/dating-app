@@ -15,7 +15,7 @@ const Navbar = () => {
             <Link to="/messages">Messages</Link>
           </li>
           <li>
-            <Link to="/messaging">Messaging</Link>
+            <Link to="/profile">Profile</Link>
           </li>
         </ul>
       </nav>

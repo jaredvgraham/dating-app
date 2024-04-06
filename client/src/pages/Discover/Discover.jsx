@@ -4,6 +4,7 @@ import assets from "../../assets/assets";
 import "./Discover.css";
 import { useState } from "react";
 import { Head } from "../../components/Head/Head.jsx";
+import LogoutButton from "../../components/Logout.jsx";
 
 export const Discover = () => {
   // Placeholder functions for your onClick events
@@ -30,6 +31,7 @@ export const Discover = () => {
   return (
     <>
       <div className="card">
+        <LogoutButton />
         <Head />
         <div className="img-slider">
           <span className="prev" onClick={() => moveSlide(-1)}>

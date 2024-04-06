@@ -10,32 +10,33 @@ export const useRefreshToken = () => {
     try {
       const response = await axios.post(
         "/refresh",
-        {
-          token: auth.refreshToken, // Correct key as expected by backend
-        },
+        {},
         {
           withCredentials: true,
           headers: { "Content-Type": "application/json" },
         }
       );
+
       console.log("Response Data:", response.data);
       // Update the auth context with new tokens
-      setAuth((prev) => ({
-        ...prev,
-        accessToken: response.data.accessToken,
-        refreshToken: response.data.refreshToken, // Assuming backend also refreshes the refreshToken
-      }));
+      // Example response handling
+      if (response.data.accessToken) {
+        // Update context/state with new access token
+        setAuth((prev) => ({
+          ...prev,
+          accessToken: response.data.accessToken,
+          // Optionally update the refresh token if your backend sends a new one
+        }));
+      }
+
       console.log(`new ${response.data.accessToken}`);
       console.log(`MADE A NEW ONE`);
 
-      return response.data.accessToken; // Return new access token
+      return response.data.accessToken;
     } catch (error) {
       console.error("Failed to refresh token:", error);
-      // Handle token refresh failure
     }
   };
-
-  // Automatically refresh token every time refresh function is called
 
   return refresh;
 };

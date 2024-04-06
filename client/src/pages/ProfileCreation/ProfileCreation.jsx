@@ -5,7 +5,7 @@ import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 
 export const ProfileCreation = () => {
   const navigate = useNavigate();
-  const { auth } = useAuth();
+  const { auth, setAuth } = useAuth();
   const axiosPrivate = useAxiosPrivate();
 
   const [profileData, setProfileData] = useState({
@@ -37,6 +37,7 @@ export const ProfileCreation = () => {
     if (file) {
       if (file.size > MAX_FILE_SIZE) {
         // Update fileSizeError for oversized files
+        window.alert("img too big ");
         setFileSizeError(
           "File too large. Please select a file smaller than 5MB."
         );
@@ -82,8 +83,11 @@ export const ProfileCreation = () => {
           Authorization: `Bearer ${auth.accessToken}`,
         },
       });
-
-      navigate("/"); // Proceed to navigate after successful request
+      setAuth((prev) => ({
+        ...prev,
+        profileExists: true,
+      }));
+      navigate("/isUser"); // Proceed to navigate after successful request
     } catch (err) {
       console.error("Profile creation error:", err);
       // Set error from server response or a generic error message

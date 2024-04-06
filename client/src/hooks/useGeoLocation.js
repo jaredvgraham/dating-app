@@ -29,9 +29,5 @@ export const useGeoLocation = () => {
     geolocation.getCurrentPosition(successFn, errorFn);
   }, []);
 
-  useEffect(() => {
-    console.log("Updated locationInfo:", locationInfo);
-  }, [locationInfo]);
-
   return { locationError, locationInfo };
 };

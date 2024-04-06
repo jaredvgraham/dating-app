@@ -51,7 +51,7 @@ export const Login = () => {
       );
 
       /* const roles = response?.data?.roles */ //this might be a thing or not <========
-      setAuth({ username, pwd, accessToken, refreshToken });
+      setAuth({ username, pwd, accessToken, isAuthenticated: true });
       setUsername("");
       setPwd("");
 

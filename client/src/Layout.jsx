@@ -5,11 +5,13 @@ import "./index.css";
 import "./pages/RightBar/rightBar.css";
 import "./pages/LeftBar/LeftBar.css";
 import "./pages/Discover/Discover.css";
+import useAuth from "./hooks/useAuth";
 
 const Layout = () => {
+  const { auth } = useAuth();
   return (
     <>
-      <Navbar />
+      {auth.profileExists && <Navbar />}
       <Outlet /> {/* Child routes will be rendered here */}
     </>
   );

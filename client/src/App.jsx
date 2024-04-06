@@ -12,6 +12,7 @@ import "./index.css";
 import CreateAccount from "./pages/CreateAccount/CreateAccount";
 import { ProfileCreation } from "./pages/ProfileCreation/ProfileCreation";
 import { IsUser } from "./pages/IsUser";
+import { Profile } from "./pages/Profile/Profile";
 
 function App() {
   return (
@@ -27,11 +28,13 @@ function App() {
             <Route path="messaging" element={<LeftBar />} />
             <Route path="discover" element={<Discover />} />
             <Route path="messages" element={<RightBar />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="isUser" element={<IsUser />} />
             <Route path="/create-account" element={<CreateAccount />} />
             <Route path="/profile-creation" element={<ProfileCreation />} />
           </Route>
         </Route>
+
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
       </Routes>

@@ -3,7 +3,7 @@ import useAuth from "../hooks/useAuth";
 import { useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 export const IsUser = () => {
-  const { auth } = useAuth();
+  const { auth, setAuth } = useAuth();
   const accessToken = auth.accessToken;
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
@@ -19,6 +19,10 @@ export const IsUser = () => {
         console.log(response.data);
         console.log("inside the try block");
         const profileExists = response.data.exists;
+        setAuth((prev) => ({
+          ...prev,
+          profileExists: profileExists === "yes",
+        }));
         profileExists === "yes" ? navigate("/") : navigate("/create-account");
       } catch (error) {
         console.error("Error checking user profile:", error);
