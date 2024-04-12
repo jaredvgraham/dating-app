@@ -1,7 +1,7 @@
 .m-right-bar {
   display: flex;
   flex-direction: column;
-  max-width: 33.33vw;
+  width: 33.33vw;
   background-color: rgb(245, 243, 239);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2),
     /* Lower larger shadow */ 0 6px 20px rgba(0, 0, 0, 0.19); /* Soft outer glow */

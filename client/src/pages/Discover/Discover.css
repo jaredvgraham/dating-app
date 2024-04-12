@@ -1,27 +1,79 @@
-.card {
+.everything {
+  margin: 0 auto; /* Center the container */
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 430px;
+  justify-content: center;
+  align-items: center;
+  height: 95vh;
+
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+.round-it {
+  display: flex;
+  flex-direction: column;
   position: relative;
   width: 100%;
-  max-width: 450px;
-  height: calc(100vh - 180px);
-  margin: 60px auto 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  height: calc(100vh - 200px);
+  margin-top: 17px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23),
+    0 0 12px rgba(0, 0, 0, 0.15), 0 16px 24px rgba(0, 0, 0, 0.2),
+    0 24px 36px rgba(0, 0, 0, 0.25);
+
   border-radius: 20px;
+
   overflow: hidden;
-  background: #fff;
 }
+
+.swipeAble {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+}
+
+.cards-container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+
+  position: relative;
+}
+
+.card {
+  position: absolute;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* .card.dark img {
+  opacity: 0.5;
+} */
 
 .img-slider {
   position: relative;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .img-slider .slide {
+  margin: 0;
+  padding: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: none; /* Hide all images initially */
-  border-radius: 20px;
 }
 
 .img-slider .slide.active {
@@ -58,51 +110,74 @@
 }
 
 .large-screen-ctn {
+  text-align: center;
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  padding-bottom: 5px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.0000006),
+    rgba(0, 0, 0, 0.06),
+    rgba(0, 0, 0, 0.06),
+    rgba(0, 0, 0, 0.952)
+  );
+  /* Semi-transparent overlay */
   color: #fff;
-  text-align: center;
-  border-radius: 0 0 20px 20px;
 }
 
 .person-info h2,
-.person-info p,
-.rate {
+.person-info p {
   margin: 5px 0;
 }
 
-.scale {
+.rate-ctn {
   display: flex;
-  justify-content: center;
-  margin-top: 10px;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  /* border-top: 1px solid gray; */
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.949),
+    rgba(0, 0, 0, 0.955)
+  );
+  padding: 10px;
+  padding-top: 5px;
+}
+.rate-ctn h3 {
+  color: #ddd;
+  font-size: 1rem;
+  font-weight: 200;
 }
 
 .scale {
   display: flex;
-  justify-content: center; /* Center scale buttons */
-  margin: 10px 0; /* Add top and bottom margin as needed */
-  padding: 0 10px; /* Padding inside the scale, adjust as needed */
-  box-sizing: border-box; /* Include padding in the width calculation */
+  justify-content: space-around;
+  width: 100%;
+  gap: 2px;
+  padding: 0;
 }
 
 .scale button {
-  background-color: #ddd; /* Neutral color for the buttons */
+  background-color: #ddd;
   color: #333;
   border: none;
-  margin: 0 3px; /* Reduce space between buttons */
-  padding: 10px 12px; /* Adjust padding to reduce button width */
-  border-radius: 5px; /* Rounded corners for buttons */
+  padding: 10px 0; /* Adjust vertical padding */
+  border-radius: 5px;
   cursor: pointer;
-  flex: 0 0 auto; /* Don't grow or shrink */
+  width: 9%; /* Reduce the width to accommodate margins and prevent overflow */
+  margin: 0 0.5%; /* Reduce margin to fit all buttons within the container */
+  text-align: center;
+  font-size: 0.8em; /* Adjust font size if necessary */
+  box-sizing: border-box;
 }
 
 .like-notLike {
   position: absolute;
-  bottom: 70px; /* Adjust this value as needed */
+  z-index: 200;
+  bottom: 100px; /* Adjust this value as needed */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -112,7 +187,7 @@
 }
 
 .like-notLike img {
-  width: 34px;
+  width: 44px;
   background-color: rgba(255, 255, 255, 0.7);
   padding: 5px;
   border-radius: 50%;
@@ -122,3 +197,25 @@
 .like-notLike img:hover {
   background-color: rgba(255, 255, 255, 0.9);
 }
+/* @media (max-width: 600px) {
+  .everything {
+    box-sizing: border-box;
+    padding: 0;
+    min-width: 100vw;
+    height: calc(100vh - 180px);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card {
+    min-width: 100vw;
+
+    margin: 0;
+  }
+}
+ */

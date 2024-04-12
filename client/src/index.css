@@ -18,9 +18,6 @@
   .m-right-bar {
     max-width: 30vw;
   }
-  .card {
-    max-width: 30vw;
-  }
 }
 
 @media (max-width: 1300px) {
@@ -28,8 +25,7 @@
     display: none !important;
   }
 
-  .m-right-bar,
-  .card {
+  .m-right-bar {
     min-width: 48%;
   }
 }
@@ -39,10 +35,10 @@
     display: none !important;
   }
 
-  .card {
+  /*  .card {
     width: 100%;
     height: 80vh;
-  }
+  } */
 
   .navbar {
     position: fixed;
@@ -51,10 +47,10 @@
     z-index: 10;
   }
 }
-@media (max-width: 444px) {
+/* @media (max-width: 444px) {
   .scale button {
     padding: 10px;
 
     margin: 3px;
   }
-}
+} */

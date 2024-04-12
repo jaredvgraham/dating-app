@@ -13,10 +13,10 @@ export const ProfileCreation = () => {
     hobbies: "",
     schoolOrWork: "",
     musicalArtists: "",
-    images: "",
+    images: [],
   });
 
-  const [profileImage, setProfileImage] = useState(null);
+  const [profileImage, setProfileImage] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [fileSizeError, setFileSizeError] = useState("");
@@ -33,22 +33,20 @@ export const ProfileCreation = () => {
   const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
 
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      if (file.size > MAX_FILE_SIZE) {
-        // Update fileSizeError for oversized files
-        window.alert("img too big ");
-        setFileSizeError(
-          "File too large. Please select a file smaller than 5MB."
-        );
-      } else {
-        // Acceptable file size, update profileImage and clear fileSizeError
-        setProfileImage(file);
-        setFileSizeError(""); // Clear fileSize error
-      }
+    const files = Array.from(e.target.files); // Convert FileList to Array
+    const oversizedFiles = files.filter((file) => file.size > MAX_FILE_SIZE);
+
+    if (oversizedFiles.length > 0) {
+      // Handle the case where one or more files are too big
+      window.alert("One or more files are too big.");
+      setFileSizeError(
+        "One or more files are too large. Please select files smaller than 5MB each."
+      );
     } else {
-      // No file selected, clear fileSizeError
-      setFileSizeError("");
+      // All files are of acceptable size
+      setProfileImage((prev) => [...prev, ...files]);
+      // Set the state with an array of files
+      setFileSizeError(""); // Clear fileSizeError
     }
   };
 
@@ -68,7 +66,9 @@ export const ProfileCreation = () => {
     });
 
     if (profileImage) {
-      formData.append("images", profileImage);
+      profileImage.forEach((file) => {
+        formData.append("images", file); // Note the simple 'images' key
+      });
     }
 
     for (let [key, value] of formData.entries()) {
@@ -153,6 +153,7 @@ export const ProfileCreation = () => {
           id="images"
           name="images"
           onChange={handleImageChange}
+          multiple
         />
 
         <button type="submit" disabled={isLoading}>

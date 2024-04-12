@@ -71,12 +71,18 @@ const CreateAccount = () => {
       navigate(`/profile-creation`);
     } catch (err) {
       console.error("Account creation error:", err);
+
+      console.log(err.response);
+
+      let errorMessage = "An unexpected error occurred. Please try again.";
+
+      if (err.response && err.response.data) {
+        errorMessage = err.response.data.message || "Account creation failed.";
+      }
+
+      setError(errorMessage);
+
       setIsLoading(false);
-      setError(
-        err.response
-          ? err.response.data.error
-          : "An error occurred during account creation"
-      );
     }
   };
   const capitalizeFirstLetter = (string) => {
@@ -88,7 +94,8 @@ const CreateAccount = () => {
     <div className="a-create-ctn">
       <div className="a-hold">
         <h2>Create Account</h2>
-        {error && <p className="error">{error}</p>}
+
+        {error && <p className="a-error">{error}</p>}
         <form className="a-form" onSubmit={handleSubmit}>
           <div className="names-ctn">
             <div className="names-stack">

@@ -21,9 +21,8 @@ function App() {
         <Route path="/" element={<Layout />}>
           {/* Layout as the parent route */}
           <Route element={<RequireAuth />}>
-            {" "}
-            {/* RequireAuth wraps around protected routes */}
             <Route index element={<Dashboard />} />{" "}
+            {/* RequireAuth wraps around protected routes */}{" "}
             {/* Use index for the default child route */}
             <Route path="messaging" element={<LeftBar />} />
             <Route path="discover" element={<Discover />} />

@@ -163,6 +163,13 @@
   color: white;
 }
 
+.a-error {
+  padding: 10px;
+  background-color: rgba(255, 0, 0, 0.619);
+  color: white;
+  border-radius: 10px;
+}
+
 @media (max-width: 800px) {
   .a-hold {
     width: 95vw;
