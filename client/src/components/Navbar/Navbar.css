@@ -1,0 +1,25 @@
+.navbar-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  background-color: #fff; /* Choose a background color that fits your design */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow for some depth */
+  z-index: 1000; /* Ensures the navbar stays on top of other content */
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-around; /* This will evenly space your nav items */
+  align-items: center;
+  height: 50px;
+  color: black;
+}
+
+nav ul li {
+  padding: 10px 20px; /* Adjust padding as needed */
+  color: black;
+}

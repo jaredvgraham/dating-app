@@ -1,0 +1,14 @@
+.cookie-ctn {
+  width: 100%; /* Full width of the viewport */
+  height: 150px;
+  position: fixed; /* Fixed positioning to keep it visible at the bottom */
+  left: 0;
+  right: 0;
+  bottom: 0; /* Position at the bottom of the viewport */
+  background-color: #f4f4f4; /* Background color for visibility */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* Optional: adds shadow for better separation */
+}

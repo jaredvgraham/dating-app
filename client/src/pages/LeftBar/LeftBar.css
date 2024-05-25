@@ -1,0 +1,157 @@
+.main-ctn {
+  display: flex;
+  flex-direction: column;
+
+  min-height: 95vh;
+  width: 33.333vw;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2),
+    /* Lower larger shadow */ 0 6px 20px rgba(0, 0, 0, 0.19); /* Soft outer glow */
+}
+
+.left-bar-non-dashboard {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+.non-dashboard-element {
+  position: fixed; /* Fixed position relative to the viewport */
+  top: 50%; /* Center vertically */
+  left: 7%; /* Center horizontally */
+  width: 100px;
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Offset the element by half its width and height */
+  z-index: 100;
+}
+
+.logo-non-dash {
+  display: block; /* To remove any default inline spacing */
+  max-width: 100%; /* Ensures the image is responsive and fits its container */
+  height: auto; /* Maintains the aspect ratio */
+}
+
+@media screen and (min-width: 1301px) {
+  .left-bar-non-dashboard {
+    margin: auto;
+    width: 70vw;
+    height: 100vh;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2),
+      /* Lower larger shadow */ 0 6px 20px rgba(0, 0, 0, 0.19); /* Soft outer glow */
+  }
+}
+@media screen and (max-width: 1301px) {
+  .non-dashboard-element {
+    display: none;
+  }
+}
+
+.top img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 10px;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.top {
+  display: flex;
+
+  align-items: center;
+  border-bottom: 1px solid rgb(191, 190, 190);
+  min-height: 60px;
+}
+.top h1 {
+  margin-left: 6px;
+}
+.input-ctn {
+  /* border-top: 1px solid black; */
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 20px;
+  box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1),
+    /* Slight shadow above the element */ 0 -2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-radius: 40px;
+  background: linear-gradient(rgb(235, 235, 235), #edecec);
+}
+textarea::placeholder {
+  font-family: "Arial", sans-serif;
+  color: #999; /* Placeholder text color */
+  font-size: 16px; /* Placeholder text size */
+  /* Add any other font styling properties you need */
+}
+
+.input-ctn .input {
+  /* border-top: 1px solid black; */
+
+  width: 100%;
+}
+.input-ctn .send-btn {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+
+  border: none;
+  color: white;
+  border-radius: 28px;
+}
+.input-ctn .send-btn:hover {
+  background-color: rgb(255, 255, 255);
+}
+
+.input-ctn textarea {
+  width: 95%;
+  margin-left: 5px;
+  height: 15px;
+  margin-bottom: 8px;
+  border: 1px solid #ccc;
+  resize: none;
+  background-image: radial-gradient(circle, #ffffff, #000000);
+
+  background: none;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  font-size: 1.1rem;
+}
+
+.messages-ctn {
+  flex-grow: 1;
+  overflow-y: auto; /* Allows scrolling */
+  margin-top: 8px;
+  font-size: 1.1rem;
+  width: 100%;
+  padding: 10px;
+  max-height: calc(95vh - 150px);
+}
+.messages-ctn .users-msg-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+.messages-ctn .match-msg-wrapper {
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Style for individual user messages */
+.messages-ctn .users-msg {
+  /* Limit the width of the message, so it doesn't extend fully to the left */
+  max-width: 100%; /* Adjust this as needed */
+  word-wrap: break-word;
+  box-sizing: border-box;
+  background-color: rgba(51, 153, 71, 0.2);
+  padding: 7px;
+  border-radius: 12px;
+  margin-top: 2px;
+}
+.messages-ctn .match-msg {
+  background-color: rgba(108, 120, 110, 0.2);
+  padding: 7px;
+  border-radius: 12px;
+  margin-top: 2px;
+}

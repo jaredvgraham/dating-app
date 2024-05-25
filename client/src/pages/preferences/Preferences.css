@@ -1,0 +1,79 @@
+/* Main preferences container styles */
+.pref-ctn {
+  padding: 20px;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f7f7; /* Light gray background for better contrast */
+}
+
+.pref-ctn-two {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px; /* Increased width for better layout */
+}
+
+.pref-ctn-two form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Consistent spacing between form elements */
+}
+
+.pref-ctn-two label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.pref-ctn-two select,
+.pref-ctn-two input[type="range"],
+.pref-ctn-two input[type="checkbox"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+/* Custom styles for the rc-slider within the form */
+.pref-ctn-two .rc-slider {
+  margin-top: 5px; /* Align slider nicely with its label */
+}
+
+.pref-ctn-two .slider-values {
+  font-size: 16px;
+  margin-top: -5px; /* Adjust spacing for better alignment */
+  color: #666;
+}
+
+.pref-ctn-two .distance-display {
+  font-size: 16px;
+  color: #666;
+}
+
+.pref-ctn-two button {
+  background-color: #007bff; /* Use a more standard button color for accessibility */
+  color: white;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 16px; /* Larger font for better readability */
+}
+
+.pref-ctn-two button:hover {
+  background-color: #0056b3; /* Slightly darker on hover for better feedback */
+}
+
+.pref-ctn-two .error {
+  color: #d9534f; /* Error color for better visibility */
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f2dede; /* Light red background */
+  margin-bottom: 20px; /* Ensure spacing from other elements */
+  text-align: center;
+}
