@@ -25,6 +25,7 @@ export const useRefreshToken = () => {
         setAuth((prev) => ({
           ...prev,
           accessToken: response.data.accessToken,
+          userId: response.data.userId || prev.userId,
           // Optionally update the refresh token if your backend sends a new one
         }));
       }

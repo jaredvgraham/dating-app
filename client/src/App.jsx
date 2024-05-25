@@ -13,6 +13,7 @@ import CreateAccount from "./pages/CreateAccount/CreateAccount";
 import { ProfileCreation } from "./pages/ProfileCreation/ProfileCreation";
 import { IsUser } from "./pages/IsUser";
 import { Profile } from "./pages/Profile/Profile";
+import { Preferences } from "./pages/preferences/Preferences";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path="isUser" element={<IsUser />} />
             <Route path="/create-account" element={<CreateAccount />} />
             <Route path="/profile-creation" element={<ProfileCreation />} />
+            <Route path="/preferences" element={<Preferences />} />
           </Route>
         </Route>
 

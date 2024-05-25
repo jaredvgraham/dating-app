@@ -11,22 +11,13 @@ import { matchWithessages } from "../../matchWithessages/matchWithessages";
 import { useState } from "react";
 
 const Dashboard = () => {
-  console.log("Dashboard rendering");
-  const [selectedMessage, setSelectedMessage] = useState(
-    matchWithessages[matchWithessages.length - 1] // The initial selected message
-  );
-
-  // This function updates the selected message
-  const handleSelectMessage = (message) => {
-    setSelectedMessage(message);
-  };
-
+  const [defaultMatch, setDefaultMatch] = useState(null);
+  console.log(`thi is the default match ${JSON.stringify(defaultMatch)}`);
   return (
     <>
-    
-      <LeftBar selectedMessage={selectedMessage} />
+      <LeftBar showMatch={defaultMatch} />
       <Discover />
-      <RightBar onSelectMessage={handleSelectMessage} />{" "}
+      <RightBar setDefaultMatch={setDefaultMatch} />{" "}
       {/* Make sure you're passing the function here */}
     </>
   );

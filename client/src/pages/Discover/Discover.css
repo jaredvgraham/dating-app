@@ -93,7 +93,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 10;
+  z-index: 100;
 }
 
 .prev {
@@ -102,7 +102,8 @@
 
 .prev:hover,
 .next:hover {
-  background-color: rgb(254, 216, 183);
+  background-color: rgb(13, 13, 13);
+  color: white;
 }
 
 .next {
@@ -160,7 +161,7 @@
   padding: 0;
 }
 
-.scale button {
+.rateBtn {
   background-color: #ddd;
   color: #333;
   border: none;
@@ -173,11 +174,16 @@
   font-size: 0.8em; /* Adjust font size if necessary */
   box-sizing: border-box;
 }
+.rateBtn.selected {
+  background-color: #4caf50; /* Green background for selected state */
+  color: white;
+  border-color: #4caf50;
+}
 
 .like-notLike {
   position: absolute;
   z-index: 200;
-  bottom: 100px; /* Adjust this value as needed */
+  bottom: 80px; /* Adjust this value as needed */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -187,7 +193,7 @@
 }
 
 .like-notLike img {
-  width: 44px;
+  width: 48px;
   background-color: rgba(255, 255, 255, 0.7);
   padding: 5px;
   border-radius: 50%;
@@ -219,3 +225,30 @@
   }
 }
  */
+.swipe-right {
+  animation: swipeRight 0.3s forwards;
+}
+
+.swipe-left {
+  animation: swipeLeft 0.3s forwards;
+}
+
+@keyframes swipeRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes swipeLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}

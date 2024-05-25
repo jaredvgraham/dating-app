@@ -65,6 +65,10 @@
   border-radius: 50%;
 }
 
+.no-matches {
+  text-align: center;
+}
+
 .matches {
   border-bottom: 1px solid rgb(187, 183, 183);
   padding: 10px;
@@ -87,6 +91,7 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   object-fit: cover;
   object-position: center top;
+  box-shadow: 0 4px 6px rgba(219, 216, 216, 0.786);
 }
 .match-pro-pic:hover {
   transform: scale(1.05);
@@ -111,10 +116,26 @@
   border-bottom: 1px solid rgb(131, 131, 131);
   padding: 10px;
   margin-bottom: 5px;
-
+  margin-top: 3px;
   display: flex;
   transition: background-color 0.3s ease;
+  position: relative;
 }
+.message-R {
+  box-shadow: 0 -5px 4px rgba(67, 143, 170, 0.1),
+    /* subtle top shadow */ 0 10px 20px rgba(67, 143, 170, 0.19),
+    /* existing bottom shadow */ 0 4px 4px rgba(27, 153, 198, 0.23); /* existing bottom shadow */
+}
+.unread-indicator {
+  height: 25px;
+  width: 25px;
+  background-color: #007bff; /* Bootstrap primary blue color */
+  border-radius: 50%;
+  position: absolute;
+  right: 15px;
+  top: 35px;
+}
+
 .message-box:hover {
   background-color: aliceblue;
   border: none;

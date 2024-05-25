@@ -6,8 +6,9 @@ const AuthContext = createContext({});
 export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({
     isAuthenticated: false,
-    user: null,
+    username: null,
     accessToken: null,
+    userId: null,
   });
   const [isLoading, setIsLoading] = useState(true);
 
@@ -23,8 +24,9 @@ export const AuthProvider = ({ children }) => {
             ...prev,
             isAuthenticated: true,
             profileExists: true,
-            user: response.data.user || prev.user,
+            username: response.data.username || prev.username,
             accessToken: response.data.accessToken || prev.accessToken,
+            userId: response.data.userId || prev.userId,
           }));
         } else {
           throw new Error("Session not active");

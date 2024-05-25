@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
+import "./ProfileCreation.css";
+import assets from "../../assets/assets";
 
 export const ProfileCreation = () => {
   const navigate = useNavigate();
@@ -13,10 +15,12 @@ export const ProfileCreation = () => {
     hobbies: "",
     schoolOrWork: "",
     musicalArtists: "",
+    pronouns: "",
     images: [],
   });
 
   const [profileImage, setProfileImage] = useState([]);
+  const [imgToDisplay, setImgToDisplay] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [fileSizeError, setFileSizeError] = useState("");
@@ -45,9 +49,21 @@ export const ProfileCreation = () => {
     } else {
       // All files are of acceptable size
       setProfileImage((prev) => [...prev, ...files]);
-      // Set the state with an array of files
+      const fileURLs = files.map((file) => URL.createObjectURL(file));
+      setImgToDisplay((prevUrls) => [...prevUrls, ...fileURLs]); // Store URLs for display
       setFileSizeError(""); // Clear fileSizeError
+      // Set the state with an array of files
     }
+  };
+
+  const handleRemoveImg = (index) => {
+    // Remove the image from the imgToDisplay array for the preview
+    const newImgToDisplay = imgToDisplay.filter((_, i) => i !== index);
+    setImgToDisplay(newImgToDisplay);
+
+    // Remove the image from the profileImage array for the backend
+    const newProfileImage = profileImage.filter((_, i) => i !== index);
+    setProfileImage(newProfileImage);
   };
 
   const handleSubmit = async (e) => {
@@ -87,6 +103,7 @@ export const ProfileCreation = () => {
         ...prev,
         profileExists: true,
       }));
+      console.log(formData.pronouns);
       navigate("/isUser"); // Proceed to navigate after successful request
     } catch (err) {
       console.error("Profile creation error:", err);
@@ -101,65 +118,119 @@ export const ProfileCreation = () => {
   };
 
   return (
-    <div className="profile-creation-container">
-      <h2>Profile Information</h2>
-      {fileSizeError && <p className="error">{fileSizeError}</p>}
-      {error && <p className="error">{error}</p>}{" "}
-      {/* Display error messages here */}
-      <form onSubmit={handleSubmit} encType="multipart/form-data" method="POST">
-        {/* Input fields remain unchanged */}
-        <label htmlFor="biography">Biography:</label>
-        <textarea
-          id="biography"
-          name="biography"
-          value={profileData.biography}
-          onChange={handleChange}
-          required
-        />
+    <>
+      <div className="non-dashboard-element">
+        <img src={assets.rLogo} alt="" className="logo-non-dash" />
+      </div>
+      <div className="profile-creation-container">
+        <div className="profile-creation-box">
+          <h2>Profile Information</h2>
+          <div className="profile-three-ctn">
+            {fileSizeError && <p className="error">{fileSizeError}</p>}
+            {error && <p className="error">{error}</p>}{" "}
+            {/* Display error messages here */}
+            <form
+              onSubmit={handleSubmit}
+              encType="multipart/form-data"
+              method="POST"
+              className="profile-input-container"
+            >
+              {/* Input fields remain unchanged */}
+              <label htmlFor="biography">Biography:</label>
+              <textarea
+                id="biography"
+                name="biography"
+                value={profileData.biography}
+                onChange={handleChange}
+                required
+              />
 
-        <label htmlFor="hobbies">Hobbies:</label>
-        <input
-          type="text"
-          id="hobbies"
-          name="hobbies"
-          value={profileData.hobbies}
-          onChange={handleChange}
-          required
-        />
+              <label htmlFor="pronouns">Pronouns:</label>
+              <input
+                type="text"
+                id="pronouns"
+                name="pronouns"
+                value={profileData.pronouns}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor="hobbies">Hobbies:</label>
+              <input
+                type="text"
+                id="hobbies"
+                name="hobbies"
+                value={profileData.hobbies}
+                onChange={handleChange}
+                required
+              />
 
-        <label htmlFor="schoolOrWork">School/Work:</label>
-        <input
-          type="text"
-          id="schoolOrWork"
-          name="schoolOrWork"
-          value={profileData.schoolOrWork}
-          onChange={handleChange}
-          required
-        />
+              <label htmlFor="schoolOrWork">School/Work:</label>
+              <input
+                type="text"
+                id="schoolOrWork"
+                name="schoolOrWork"
+                value={profileData.schoolOrWork}
+                onChange={handleChange}
+                required
+              />
 
-        <label htmlFor="musicalArtists">Favorite Musical Artists:</label>
-        <input
-          type="text"
-          id="musicalArtists"
-          name="musicalArtists"
-          value={profileData.musicalArtists}
-          onChange={handleChange}
-          required
-        />
+              <label htmlFor="musicalArtists">Favorite Musical Artists:</label>
+              <input
+                type="text"
+                id="musicalArtists"
+                name="musicalArtists"
+                value={profileData.musicalArtists}
+                onChange={handleChange}
+                required
+              />
+              <div className="profile-creation-file-upload-wrapper">
+                <h3>Up to 7 Images:</h3>
+                <label className="btn-file-upload" htmlFor="images">
+                  Upload Images
+                </label>
+                <input
+                  className="imgs-input-"
+                  type="file"
+                  id="images"
+                  accept="image/*"
+                  name="images"
+                  onChange={handleImageChange}
+                  multiple
+                />
+              </div>
 
-        <label htmlFor="images">Profile Images:</label>
-        <input
-          type="file"
-          id="images"
-          name="images"
-          onChange={handleImageChange}
-          multiple
-        />
-
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? "Saving..." : "Save Profile"}
-        </button>
-      </form>
-    </div>
+              <button
+                className="profile-creation-submit"
+                type="submit"
+                disabled={isLoading}
+              >
+                {isLoading ? "Saving..." : "Save Profile"}
+              </button>
+            </form>
+            <div className="profile-creation-img-ctn">
+              {imgToDisplay &&
+                imgToDisplay.map((url, index) => (
+                  <>
+                    <div className="img-obj">
+                      <img
+                        className="profile-creation-img"
+                        key={index}
+                        src={url}
+                        alt="Profile preview"
+                      />
+                      <button
+                        className="remove-img-btn"
+                        onClick={() => handleRemoveImg(index)}
+                      >
+                        x
+                      </button>
+                    </div>
+                  </>
+                ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };

@@ -1,4 +1,4 @@
-import assets from "../assets/assets";
+/* import assets from "../assets/assets";
 
 export const matchWithessages = [
   { id: 1, image: assets.wom3alt, name: "Emma", message: "Hey you!" },
@@ -10,4 +10,9 @@ export const matchWithessages = [
   { id: 8, image: assets.wom3alt, name: "Emma", message: "Hey you!" },
   { id: 9, image: assets.wom3alt, name: "Emma", message: "Hey you!" },
   //... other messages
-];
+]; */
+import React from "react";
+
+export const matchWithessages = () => {
+  return <div>matchWithessages</div>;
+};

@@ -7,10 +7,10 @@ import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 
-import { matchWithessages } from "../../matchWithessages/matchWithessages";
-
-export const RightBar = ({ onSelectMessage }) => {
+export const RightBar = ({ onSelectMessage, setDefaultMatch }) => {
   const { auth } = useAuth();
+  const userId = auth.userId;
+  console.log(`got the userId here ${userId}`);
   const accessToken = auth.accessToken;
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
@@ -20,25 +20,36 @@ export const RightBar = ({ onSelectMessage }) => {
     ? "m-right-bar"
     : "m-right-bar-non-dashboard";
 
-  const matchesArray = [
-    { id: 1, imageUrl: assets.wom6alt, name: "Jane" },
-    { id: 2, imageUrl: assets.wom6alt, name: "Jane" },
-    { id: 3, imageUrl: assets.wom6alt, name: "Jane" },
-    { id: 4, imageUrl: assets.wom6alt, name: "Jane" },
-    { id: 5, image: assets.wom6alt, name: "Jane" },
-    { id: 6, image: assets.wom6alt, name: "Jane" },
-    { id: 7, image: assets.wom6alt, name: "Jane" },
-  ];
   const [matches, setMatches] = useState([]);
+  const [messages, setMessages] = useState([]);
+  const [stompClient, setStompClient] = useState(null);
 
   useEffect(() => {
     const getMatches = async () => {
       try {
         const response = await axiosPrivate.get("/matches");
-
-        const allMatches = response.data;
         console.log(response.data);
-        setMatches(allMatches);
+        const allMatches = response.data;
+        const matchesWithTime = response.data.filter(
+          (match) => match.message && match.message.timestamp
+        );
+        const reversedMatches = allMatches.reverse();
+        const sortedMatchesByTimestamp = matchesWithTime.sort(
+          (a, b) =>
+            new Date(b.message.timestamp) - new Date(a.message.timestamp)
+        );
+
+        const matchesWithMessages = response.data.filter(
+          (match) => match.message !== null
+        );
+        setMatches(reversedMatches);
+        setMessages(sortedMatchesByTimestamp);
+        if (sortedMatchesByTimestamp.length > 0) {
+          setDefaultMatch(sortedMatchesByTimestamp[0]);
+        } else {
+          // Handle case where no matches have messages yet
+          console.log("No matches with messages found.");
+        } // Setting the default match for the dashboard
       } catch (error) {
         console.log("error getting matches", error);
       }
@@ -47,8 +58,20 @@ export const RightBar = ({ onSelectMessage }) => {
   }, []);
 
   const handleMsgClick = (msg) => {
-    onSelectMessage(msg);
-    navigate("/messaging", { state: { selectedMessage: msg } });
+    if (window.innerWidth < 1300) {
+      navigate("/messaging", { state: { msg } });
+    } else {
+      setDefaultMatch(msg);
+    }
+  };
+
+  const startConversation = (match) => {
+    // Now using matchKey to start a conversation
+    const matchKey = match.matchKey;
+    console.log(`first name ${match.firstname}`);
+    console.log(`this is the ${matchKey}`);
+
+    navigate("/messaging", { state: { match } });
   };
   return (
     <div className={rightBarClasses}>
@@ -58,35 +81,54 @@ export const RightBar = ({ onSelectMessage }) => {
         <h2>Matches</h2>
         <div className="matches-grid">
           {matches.map((match) => (
-            <div key={match.id} className="matches-box">
+            <div key={match.matchKey} className="matches-box">
               <img
+                onClick={() => startConversation(match)}
                 className="match-pro-pic"
                 src={match.image}
-                alt={match.Firstame}
+                alt={match.firstname}
               />
               {/* You can include more info about the match here if needed */}
             </div>
           ))}
         </div>
+        {matches.length === 0 && (
+          <div className="matches-grid">
+            <p className="no-matches">No matches yet</p>
+            {/* You can include more info about the match here if needed */}
+          </div>
+        )}
       </div>
 
       {/* Messages section */}
       <div className="msgs">
         <h2>Messages</h2>
         <div className="msgs-grid">
-          {matchWithessages.map((msg) => (
+          {messages.map((msg) => (
             <div
-              key={msg.id}
-              className="message-box"
+              key={msg.matchKey}
+              className={`message-box ${
+                msg.message.method === "received" ? "message-R" : ""
+              }`}
               onClick={() => handleMsgClick(msg)}
             >
-              <img className="msg-pro-pic" src={msg.image} alt={msg.name} />
+              {/* Unread indicator */}
+              {msg.message.method === "received" &&
+                msg.message.read === false && (
+                  <div className="unread-indicator"></div>
+                )}
+              <img
+                className="msg-pro-pic"
+                src={msg.image}
+                alt={msg.firstname}
+              />
               <div className="msg-info">
-                <h4>{msg.name}</h4>
-                <p>{msg.message}</p>
+                <h4>{msg.firstname}</h4>
+                <p>{msg.message.content}</p>
               </div>
             </div>
           ))}
+          {messages.length === 0 && <p>No messages yet</p>}
         </div>
       </div>
 

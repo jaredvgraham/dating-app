@@ -44,14 +44,24 @@ export const Login = () => {
       console.log(JSON.stringify(response?.data));
       const accessToken = response?.data?.accessToken;
       const refreshToken = response?.data?.refreshToken;
+      const userId = response?.data?.userId;
+
       console.log(`this is ${refreshToken}`);
+      console.log(`this is userId from login ${userId}`);
       console.log(`my ${accessToken}`);
       console.log(
         `this is the location: ${JSON.stringify(locationInfo, null, 2)}`
       );
 
       /* const roles = response?.data?.roles */ //this might be a thing or not <========
-      setAuth({ username, pwd, accessToken, isAuthenticated: true });
+      setAuth({
+        username: username,
+        pwd,
+        accessToken,
+        userId: userId,
+        isAuthenticated: true,
+      });
+
       setUsername("");
       setPwd("");
 
