@@ -6,7 +6,7 @@ import axios from "axios";
 // const BASE_URL = process.env.NGROK_API;
 
 const BASE_URL = process.env.PRODUCTION_URL;
-
+console.log("API Base URL:", BASE_URL);
 export default axios.create({
   baseURL: BASE_URL,
 });
