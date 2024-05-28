@@ -13,8 +13,9 @@ export const WebSocketProvider = ({ children }) => {
   const [client, setClient] = useState(null);
 
   useEffect(() => {
-    const serverUrl = "https://42f5e9aace27.ngrok.app/ws";
-    const stompClient = Stomp.over(() => new SockJS(serverUrl));
+    // const serverUrl = "https://42f5e9aace27.ngrok.app/ws";
+    const serverUrl = process.env.PRODUCTION_URL;
+    const stompClient = Stomp.over(() => new SockJS(`${serverUrl}/ws`));
 
     stompClient.connect(
       { Authorization: `Bearer ${auth.accessToken}` },

@@ -1,8 +1,11 @@
 import axios from "axios";
 
-const BASE_URL = "https://42f5e9aace27.ngrok.app";
+//const BASE_URL = "https://dtebyratebackendrndr-3.onrender.com";
+// const BASE_URL = "https://42f5e9aace27.ngrok.app";
 
 // const BASE_URL = process.env.NGROK_API;
+
+const BASE_URL = process.env.PRODUCTION_URL;
 
 export default axios.create({
   baseURL: BASE_URL,
