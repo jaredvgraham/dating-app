@@ -3,16 +3,27 @@ import axios from "../api/axios";
 
 const AuthContext = createContext({});
 
+function isSafari() {
+  return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+}
+
 export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({
     isAuthenticated: false,
     username: null,
     accessToken: null,
     userId: null,
+    isSafari: false,
   });
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    const safariCheck = isSafari();
+    setAuth((prev) => ({
+      ...prev,
+      isSafari: safariCheck,
+    }));
+
     const validateSession = async () => {
       try {
         const response = await axios.get("/session-status", {

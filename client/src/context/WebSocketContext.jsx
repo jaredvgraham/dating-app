@@ -14,7 +14,7 @@ export const WebSocketProvider = ({ children }) => {
 
   useEffect(() => {
     // const serverUrl = "https://42f5e9aace27.ngrok.app/ws";
-    const serverUrl = process.env.PRODUCTION_URL;
+    const serverUrl = import.meta.env.VITE_PRODUCTION_URL;
     const stompClient = Stomp.over(() => new SockJS(`${serverUrl}/ws`));
 
     stompClient.connect(

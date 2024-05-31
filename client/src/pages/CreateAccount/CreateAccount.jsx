@@ -44,11 +44,17 @@ const CreateAccount = () => {
     }));
   };
 
+  const modifiedFormData = {
+    ...formData,
+    sexualOrientation: formData.sexualOrientation.toLowerCase(),
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setError("");
     console.log(`JWT Token: ${accessToken}`); // Add this line to log the JWT token
+    console.log(modifiedFormData);
 
     try {
       const response = await axiosPrivate.post(

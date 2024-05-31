@@ -4,10 +4,12 @@ import { useRefreshToken } from "./useRefreshToken";
 import axios from "axios";
 
 import useAuth from "./useAuth";
+import { useSafariRefresh } from "./useSafariRefresh";
 
 export const useAxiosPrivate = () => {
   const refresh = useRefreshToken();
-  const { auth } = useAuth(); // Assuming useAuth returns an object with auth state
+  const safariRefresh = useSafariRefresh();
+  const { auth } = useAuth();
 
   useEffect(() => {
     const requestIntercept = axiosPrivate.interceptors.request.use(
@@ -26,7 +28,9 @@ export const useAxiosPrivate = () => {
         const prevRequest = error?.config;
         if (error?.response?.status === 403 && !prevRequest?.sent) {
           prevRequest.sent = true;
-          const newAccessToken = await refresh(); // Attempt to refresh token
+          const newAccessToken = auth.isSafari
+            ? await safariRefresh()
+            : refresh(); // Attempt to refresh token
 
           // If refreshing the token is successful, update the Authorization header
           // with the new token and resend the original request.
@@ -47,7 +51,7 @@ export const useAxiosPrivate = () => {
       axiosPrivate.interceptors.request.eject(requestIntercept);
       axiosPrivate.interceptors.response.eject(responseIntercept);
     };
-  }, [auth, refresh]); // Re-run effect if auth or refresh function changes
+  }, [auth, refresh, safariRefresh]); // Re-run effect if auth or refresh function changes
 
   return axiosPrivate;
 };
