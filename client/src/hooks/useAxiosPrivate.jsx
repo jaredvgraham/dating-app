@@ -1,22 +1,22 @@
-import { axiosPrivate } from "../api/axios";
 import { useEffect } from "react";
-import { useRefreshToken } from "./useRefreshToken";
-import axios from "axios";
-
+import { axiosPrivate } from "../api/axios"; // Adjust the import path based on your project structure
+import { getAuth } from "firebase/auth";
 import useAuth from "./useAuth";
-import { useSafariRefresh } from "./useSafariRefresh";
 
 export const useAxiosPrivate = () => {
-  const refresh = useRefreshToken();
-  const safariRefresh = useSafariRefresh();
   const { auth } = useAuth();
+  const firebaseAuth = getAuth();
 
   useEffect(() => {
     const requestIntercept = axiosPrivate.interceptors.request.use(
-      (config) => {
-        if (!config.headers["Authorization"]) {
-          config.headers["Authorization"] = `Bearer ${auth?.accessToken}`;
+      async (config) => {
+        const user = firebaseAuth.currentUser;
+
+        if (user) {
+          const token = await user.getIdToken();
+          config.headers.Authorization = `Bearer ${token}`;
         }
+
         return config;
       },
       (error) => Promise.reject(error)
@@ -25,33 +25,26 @@ export const useAxiosPrivate = () => {
     const responseIntercept = axiosPrivate.interceptors.response.use(
       (response) => response,
       async (error) => {
-        const prevRequest = error?.config;
-        if (error?.response?.status === 403 && !prevRequest?.sent) {
-          prevRequest.sent = true;
-          const newAccessToken = auth.isSafari
-            ? await safariRefresh()
-            : refresh(); // Attempt to refresh token
+        const originalRequest = error.config;
+        if (error.response.status === 401 && !originalRequest._retry) {
+          originalRequest._retry = true;
+          const user = firebaseAuth.currentUser;
 
-          // If refreshing the token is successful, update the Authorization header
-          // with the new token and resend the original request.
-          if (newAccessToken) {
-            axios.defaults.headers.common[
-              "Authorization"
-            ] = `Bearer ${newAccessToken}`;
-            prevRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
-            return axiosPrivate(prevRequest);
+          if (user) {
+            const token = await user.getIdToken(true);
+            originalRequest.headers.Authorization = `Bearer ${token}`;
+            return axiosPrivate(originalRequest);
           }
         }
         return Promise.reject(error);
       }
     );
 
-    // Cleanup on unmount
     return () => {
       axiosPrivate.interceptors.request.eject(requestIntercept);
       axiosPrivate.interceptors.response.eject(responseIntercept);
     };
-  }, [auth, refresh, safariRefresh]); // Re-run effect if auth or refresh function changes
+  }, [auth, firebaseAuth]);
 
   return axiosPrivate;
 };

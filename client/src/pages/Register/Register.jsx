@@ -81,6 +81,14 @@ export const Register = () => {
       );
 
       console.log(response.data);
+
+      const userData = response.data;
+      setAuth({
+        isAuthenticated: true,
+        username: userData.username,
+        accessToken: userData.accessToken,
+        userId: userData.userId,
+      });
       setSuccess(true);
       navigate(`/login`);
     } catch (err) {
