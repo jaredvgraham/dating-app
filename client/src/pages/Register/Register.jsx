@@ -85,9 +85,9 @@ export const Register = () => {
       const userData = response.data;
       setAuth({
         isAuthenticated: true,
-        username: userData.username,
-        accessToken: userData.accessToken,
-        userId: userData.userId,
+        username: userData.username || null,
+        accessToken: userData.accessToken || null,
+        userId: userData.userId || null,
       });
       setSuccess(true);
       navigate(`/login`);
